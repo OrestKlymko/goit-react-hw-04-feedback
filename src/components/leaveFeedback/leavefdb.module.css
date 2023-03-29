@@ -1,0 +1,31 @@
+.good {
+  background-color: green;
+  color: white;
+}
+
+.neutral {
+  background-color: blue;
+  color: white;
+}
+
+.bad {
+  background-color: red;
+  color: white;
+}
+
+.good,
+.bad,
+.neutral {
+  border: 1px solid wheat;
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.good:hover,
+.bad:hover,
+.neutral:hover {
+  transform: scale(1.1);
+}
