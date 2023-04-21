@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import { FeedbackOptions } from './leaveFeedback/leavefdb';
 import { Statistic } from './statistic/statistic';
 import { Section } from './Section/section';
