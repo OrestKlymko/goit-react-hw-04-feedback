@@ -11,27 +11,6 @@ export class App extends Component {
     bad: 0,
   };
 
-  vote = e => {
-    // eslint-disable-next-line default-case
-    switch (e.target.innerText) {
-      case 'Good':
-        this.setState(prevEvent => ({
-          good: prevEvent.good + 1,
-        }));
-        break;
-
-      case 'Neutral':
-        this.setState(prevEvent => ({
-          neutral: prevEvent.neutral + 1,
-        }));
-        break;
-      case 'Bad':
-        this.setState(prevEvent => ({
-          bad: prevEvent.bad + 1,
-        }));
-        break;
-    }
-  };
   countTotalFeedback = () => {
     const state = this.state;
     let sum = 0;
@@ -50,7 +29,7 @@ export class App extends Component {
     return (
       <div>
         <Section title="Please leave your feedback">
-          <FeedbackOptions vote={this.vote} />
+          <FeedbackOptions onLeaveFeedback={(data)=>this.setState(data)} options={this.state}/>
         </Section>
         <Section title="Statistic">
           {this.countTotalFeedback() > 0 ? (
