@@ -4,7 +4,6 @@ export const FeedbackOptions = ({options,onLeaveFeedback}) => {
 
 
   const changeVote=(vote)=> {
-    console.log(vote)
   const newOptions = {...options, [vote]:options[vote]+1}
     onLeaveFeedback(newOptions)
 

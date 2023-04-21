@@ -1,45 +1,42 @@
-import { Component } from 'react';
+import { Component, useState } from 'react';
 import { FeedbackOptions } from './leaveFeedback/leavefdb';
 import { Statistic } from './statistic/statistic';
 import { Section } from './Section/section';
 import { Notification } from './Notification/Notification';
 
-export class App extends Component {
-  state = {
+export function App() {
+  const [state, setState]=useState({
     good: 0,
     neutral: 0,
     bad: 0,
-  };
-
-  countTotalFeedback = () => {
-    const state = this.state;
+  })
+  const countTotalFeedback = () => {
     let sum = 0;
     for (let key in state) {
       sum += state[key];
     }
     return sum;
   };
-
-  countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((state.good / countTotalFeedback()) * 100);
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
+
+    const { good, neutral, bad } = state;
     return (
       <div>
         <Section title="Please leave your feedback">
-          <FeedbackOptions onLeaveFeedback={(data)=>this.setState(data)} options={this.state}/>
+          <FeedbackOptions onLeaveFeedback={(data)=>setState(data)} options={state}/>
         </Section>
         <Section title="Statistic">
-          {this.countTotalFeedback() > 0 ? (
+          {countTotalFeedback() > 0 ? (
             <Statistic
               good={good}
               neutral={neutral}
               bad={bad}
-              countTotalFeedback={this.countTotalFeedback}
+              countTotalFeedback={countTotalFeedback}
               countPositiveFeedbackPercentage={
-                this.countPositiveFeedbackPercentage
+                countPositiveFeedbackPercentage
               }
             />
           ) : (
@@ -48,5 +45,4 @@ export class App extends Component {
         </Section>
       </div>
     );
-  }
 }
